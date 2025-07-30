@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Bot Control</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    .card {
+      background: #2c2c2c;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00ffcc;
+    }
+    h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #b3e5fc;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group label {
+      font-weight: 500;
+      margin-bottom: 6px;
+      display: block;
+      color: #ffffff;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #444;
+      border-radius: 6px;
+      background: #333;
+      color: #e0e0e0;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: #00ffcc;
+      outline: none;
+    }
+    .form-group input:required:invalid {
+      border-color: #f44336;
+    }
+    .form-group input:required:valid {
+      border-color: #4CAF50;
+    }
+    .anti-afk-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+    #anti-afk {
+      margin-left: 10px;
+      transform: scale(0.9);
+    }
+    #anti-afk-options {
+      display: none;
+      margin-top: 8px;
+      width: 100%;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    #startBot {
+      flex: 1;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    #startBot:hover {
+      background-color: #45a049;
+    }
+    #stopBot {
+      flex: 1;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    #stopBot:hover {
+      background-color: #da190b;
+    }
+    .command-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    #command {
+      flex: 3;
+      padding: 10px;
+      border: 1px solid #444;
+      border-radius: 6px;
+      background: #333;
+      color: #e0e0e0;
+    }
+    .send-btn {
+      flex: 1;
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    .send-btn:hover {
+      background-color: #006d9c;
+    }
+    #messages, #chat {
+      border: 1px solid #444;
+      padding: 12px;
+      height: 180px;
+      overflow-y: auto;
+      background: #222;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    #messages::before { content: "Messages:"; font-weight: bold; }
+    #chat::before { content: "Chat:"; font-weight: bold; }
+    @media (max-width: 600px) {
+      .container { margin: 10px; padding: 0 10px; }
+      .button-group, .command-group { flex-direction: column; }
+      #startBot, #stopBot, #command, .send-btn { width: 100%; }
+      .anti-afk-container { flex-direction: column; align-items: flex-start; }
+      #anti-afk { margin-left: 0; margin-top: 5px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Minecraft Bot Control</h1>
+      <div id="login-section" style="display: block;">
+        <div class="form-group">
+          <label>Username:</label>
+          <input id="login-username" placeholder="Enter Username" required>
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input id="login-password" type="password" placeholder="Enter Password" required>
+        </div>
+        <button onclick="login()" style="background-color: #008CBA; color: white; padding: 12px; border-radius: 6px; width: 100%;">Login</button>
+      </div>
+      <div id="bot-section" style="display: none;">
+        <h3>Timer: <span id="timer">0</span> seconds</h3>
+        <div class="form-group">
+          <label>Bot Name (Optional):</label>
+          <input id="username" placeholder="Enter Bot Name">
+        </div>
+        <div class="form-group">
+          <label>Server IP:</label>
+          <input id="ip" placeholder="Enter Server IP" required>
+        </div>
+        <div class="form-group">
+          <label>Port:</label>
+          <input id="port" type="number" placeholder="Enter Port" required>
+        </div>
+        <div class="form-group">
+          <label>Version:</label>
+          <select id="version" required>
+            <option value="">Select Version</option>
+            <option value="1.13.1">1.13.1</option>
+            <option value="1.13.2">1.13.2</option>
+            <option value="1.14">1.14</option>
+            <option value="1.14.1">1.14.1</option>
+            <option value="1.14.2">1.14.2</option>
+            <option value="1.14.3">1.14.3</option>
+            <option value="1.14.4">1.14.4</option>
+            <option value="1.15">1.15</option>
+            <option value="1.15.1">1.15.1</option>
+            <option value="1.15.2">1.15.2</option>
+            <option value="1.16">1.16</option>
+            <option value="1.16.1">1.16.1</option>
+            <option value="1.16.2">1.16.2</option>
+            <option value="1.16.3">1.16.3</option>
+            <option value="1.16.4">1.16.4</option>
+            <option value="1.16.5">1.16.5</option>
+            <option value="1.17">1.17</option>
+            <option value="1.17.1">1.17.1</option>
+            <option value="1.18">1.18</option>
+            <option value="1.18.1">1.18.1</option>
+            <option value="1.18.2">1.18.2</option>
+            <option value="1.19">1.19</option>
+            <option value="1.19.1">1.19.1</option>
+            <option value="1.19.2">1.19.2</option>
+            <option value="1.19.3">1.19.3</option>
+            <option value="1.19.4">1.19.4</option>
+            <option value="1.20">1.20</option>
+            <option value="1.20.1">1.20.1</option>
+            <option value="1.20.2">1.20.2</option>
+            <option value="1.20.3">1.20.3</option>
+            <option value="1.20.4">1.20.4</option>
+            <option value="1.21">1.21</option>
+            <option value="1.21.1">1.21.1</option>
+            <option value="1.21.2">1.21.2</option>
+            <option value="1.21.3">1.21.3</option>
+            <option value="1.21.4">1.21.4</option>
+            <option value="1.21.5">1.21.5</option>
+            <option value="1.21.6">1.21.6</option>
+            <option value="1.21.7">1.21.7</option>
+            <option value="1.21.8">1.21.8</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Password (Microsoft, Optional):</label>
+          <input id="password" placeholder="Enter Password">
+        </div>
+        <div class="form-group">
+          <label>Authentication Type:</label>
+          <select id="auth" onchange="togglePassword()">
+            <option value="offline">Offline (Cracked)</option>
+            <option value="microsoft">Microsoft</option>
+          </select>
+        </div>
+        <div class="anti-afk-container">
+          <label>Anti-AFK:</label>
+          <input type="checkbox" id="anti-afk" onchange="toggleAntiAFKOptions()">
+        </div>
+        <div id="anti-afk-options" class="form-group">
+          <label>Movement Type:</label>
+          <select id="anti-afk-movement">
+            <option value="jump">Jump</option>
+            <option value="walk">Walk</option>
+            <option value="sneak">Sneak</option>
+            <option value="circle">Circle</option>
+          </select>
+        </div>
+        <div class="button-group">
+          <button id="startBot" onclick="startBot()">Start Bot</button>
+          <button id="stopBot" onclick="stopBot()">Stop Bot</button>
+        </div>
+        <div class="command-group">
+          <input id="command" placeholder="Enter command (e.g., /say Hello)">
+          <button class="send-btn" onclick="sendCommand()">Send</button>
+        </div>
+        <div id="messages"></div>
+        <div id="chat"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+  <script>
+    let socket;
+    let userId;
+    let timerInterval;
+
+    function login() {
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      if (!username || !password) {
+        alert('Username and Password are required!');
+        return;
+      }
+      fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          userId = data.userId;
+          document.getElementById('login-section').style.display = 'none';
+          document.getElementById('bot-section').style.display = 'block';
+          socket = io();
+          setupSocket();
+        } else {
+          alert(data.message);
+        }
+      });
+    }
+
+    function setupSocket() {
+      socket.on('timer', (elapsed) => {
+        document.getElementById('timer').innerText = elapsed;
+      });
+
+      socket.on('message', (msg) => {
+        const messages = document.getElementById('messages');
+        messages.innerHTML += `<p>${msg}</p>`;
+        messages.scrollTop = messages.scrollHeight;
+      });
+
+      socket.on('chat', (msg) => {
+        const chat = document.getElementById('chat');
+        chat.innerHTML += `<p>${msg}</p>`;
+        chat.scrollTop = chat.scrollHeight;
+      });
+
+      socket.on('botStatus', (status) => {
+        if (status.connected) {
+          document.getElementById('messages').innerHTML += `<p>Bot connected: ${status.position.x}, ${status.position.y}, ${status.position.z}</p>`;
+          startTimer();
+        }
+      });
+    }
+
+    function togglePassword() {
+      const auth = document.getElementById('auth').value;
+      document.getElementById('password').style.display = auth === 'microsoft' ? 'block' : 'none';
+    }
+
+    function toggleAntiAFKOptions() {
+      const antiAFK = document.getElementById('anti-afk').checked;
+      document.getElementById('anti-afk-options').style.display = antiAFK ? 'block' : 'none';
+    }
+
+    function startTimer() {
+      let timeLeft = 3600; // 1 hour in seconds
+      document.getElementById('timer').innerText = timeLeft;
+      clearInterval(timerInterval); // Clear any existing timer
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').innerText = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval); // Stop timer after 1 hour
+          document.getElementById('timer').innerText = 'Timer expired (Bot remains open)';
+        }
+      }, 1000);
+    }
+
+    function startBot() {
+      const ip = document.getElementById('ip').value;
+      const port = document.getElementById('port').value;
+      const version = document.getElementById('version').value;
+      if (!ip || !port) {
+        alert('Server IP and Port are required!');
+        return;
+      }
+      if (!version) {
+        alert('Please select a version!');
+        return;
+      }
+      const config = {
+        'bot-account': {
+          username: document.getElementById('username').value || `CrackedBot_${Math.floor(Math.random() * 1000)}`,
+          password: document.getElementById('password').value || '',
+          auth: document.getElementById('auth').value,
+        },
+        server: {
+          ip: ip,
+          port: parseInt(port),
+          version: version,
+        },
+        position: { enabled: false, x: 0, y: 0, z: 0 },
+        utils: {
+          'auto-auth': { enabled: false, password: '' },
+          'anti-afk': {
+            enabled: document.getElementById('anti-afk').checked,
+            movement: document.getElementById('anti-afk-movement').value
+          },
+          'chat-messages': { enabled: true, repeat: true, 'repeat-delay': 60, messages: ['Hello, I am an AFK bot!'] },
+          'chat-log': true,
+          'auto-reconnect': true,
+          'auto-recconect-delay': 5000,
+        },
+      };
+      socket.emit('addBot', config);
+    }
+
+    function stopBot() {
+      socket.emit('removeBot');
+      clearInterval(timerInterval); // Stop timer when bot is stopped
+      document.getElementById('timer').innerText = '0';
+    }
+
+    function sendCommand() {
+      const command = document.getElementById('command').value;
+      if (command && socket) {
+        socket.emit('command', command);
+        document.getElementById('command').value = '';
+      }
+    }
+
+    window.onload = () => {
+      togglePassword();
+      toggleAntiAFKOptions();
+    };
+  </script>
+</body>
+</html>

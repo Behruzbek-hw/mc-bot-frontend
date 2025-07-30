@@ -1,15 +1,21 @@
 {
-  "name": "nodejs",
+  "name": "minecraft-bot-ui",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^4.21.2",
+    "minecraft-data": "^3.93.0",
+    "mineflayer": "^4.30.0",
+    "mineflayer-pathfinder": "^2.4.5",
+    "socket.io": "^4.8.1",
+    "winston": "^3.17.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@types/node": "^22.13.11"
-  }
+  "description": ""
 }
