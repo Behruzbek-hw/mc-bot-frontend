@@ -1,0 +1,234 @@
+@import url('https://fonts.cdnfonts.com/css/minecraft-4');
+*{
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid; */
+    font-family: 'Minecraft', sans-serif;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background: #222831;
+    overflow-x: hidden;
+}
+body::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+/*----------NAV------------*/
+nav{
+    width: calc(100% - 20Px);
+    height: 70px;
+    background: #393E46;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px 0px 10px;
+    align-items: center;
+    position: fixed;
+}
+nav > h1{
+    color: #EEEEEE;
+    font-size: 30px;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    width: 15%;
+    text-decoration: none;
+    text-align: center;
+    margin-top: -5px;
+}
+nav h1 a{
+    color: #fd5d00;
+    text-decoration: none;
+}
+nav > .navItems{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* font-family: Arial, Helvetica, sans-serif; */
+}
+.navItems > a{
+    color: #EEEEEE;
+    font-size: 20px;
+    text-decoration: none;
+    position: relative;
+}
+a::before{
+    content: '';
+    width: 0%;
+    height: 5px;
+    background: white;
+    position: absolute;
+    top: 25px;
+    transition: 0.5s;
+}
+.navItems > a:hover::before{
+    content: '';
+    width: 100%;
+    height: 5px;
+    background: white;
+
+}
+nav > .sign{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sign > button{
+    width: 70%;
+    height: 30px;
+    background: #00ADB5;
+    color: #EEEEEE;
+    font-size: 20px;
+    border: none;
+    padding-bottom: 5px;
+}
+
+/*----------------------------------------*/
+
+main{
+    width: 100%;
+    height: calc(100% - 70px);
+
+}
+main > section{
+    width: 100%;
+    height: 80%;
+    padding: 0px;
+    /* margin-bottom: -10%; */
+    display: grid;
+    flex-wrap: wrap;
+}
+
+main > section > div{
+    width: 91%;
+    height: 200px;
+    border: 1px solid #EEEEEE;
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+section > div:nth-child(1){
+    justify-self: end;
+    border: none;
+    height: 80px;
+}
+section > div:nth-child(2){
+    justify-self: start;
+}
+section > div:nth-child(3){
+    justify-self: end;
+}
+section > div:nth-child(4){
+    justify-self: start;
+}
+section > div:nth-child(5){
+    justify-self: end;
+}
+
+section > div > div{
+    width: 48%;
+    height: 30%;
+    border: 1px solid;
+    margin: 5px;
+    color: white;
+}
+section > div > div:nth-child(2){
+    height: 30%;
+}
+section > div > div:nth-child(3){
+    height: 60%;
+    width: 97.5%;
+    margin-top: 0px;
+}
+.divSec1{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.divSec1 > code{
+    font-size: 20px;
+}
+code > p{
+    color: rgb(20, 204, 0);
+    text-decoration: underline;
+}
+.divSec1 > button{
+    background: rgb(255, 115, 0);
+    width: 90px;
+    height: 30px;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+.divSec1 > button:hover{
+    background: rgba(255, 115, 0, 0.7);
+}
+.divSec2{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.divSec2 > p{
+    font-size: 40px;
+    height: 80%;
+}
+.divSec3{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.divSec3 > div{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.divSec3 > div > div{
+    width: 25%;
+    height: 35%;
+    font-size: 30px;
+    text-align: center;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 30%; */
+}
+.divSec3 > div > div > p{
+    width: 100%;
+    height: 90%;
+    /* border: 1px solid; */
+}
+.divSec3 > div > div:nth-child(1){
+    background: green;
+}
+.divSec3 > div > div:nth-child(2){
+    background: rgb(188, 0, 0);
+}
+.divSec3 > div > div:nth-child(3){
+    background: rgb(217, 127, 0);
+}
+.divSec3 > div > div:nth-child(4){
+    background: rgb(252, 43, 43);
+}
+.divSec3 > div > div:nth-child(5){
+    background: rgb(196, 196, 0);
+}
+.divSec3 > div > div:nth-child(6){
+    background: blue;
+}

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MYZA page</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+          @import url('https://fonts.cdnfonts.com/css/minecraft-4');
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Minecraft', sans-serif;
+        }
+
+        main{
+            width: 100vw;
+            height: 95vh;
+            overflow-x: hidden;
+            background: #222831;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        main::-webkit-scrollbar{
+            width: 0;
+            height: 0;
+        }
+        h1{
+            width: 100%;
+            text-align: center;
+            color: rgb(255, 136, 0);
+            border-bottom: 1px solid #6c6c6c;
+            padding-bottom: 10px;
+        }
+        .form{
+            background: #393E46;
+            width: 80%;
+            height: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-wrap: wrap;
+            box-shadow: 0px 0px 5px #393E46,
+                        0px 0px 10px #393E46,
+                        0px 0px 15px #393E46,
+                        0px 0px 20px #393E46,
+                        0px 0px 25px #393E46,
+                        0px 0px 30px #222831,
+                        0px 0px 35px #222831,
+                        0px 0px 40px #222831,
+                        0px 0px 45px #222831,
+                        0px 0px 50px #222831;
+        }
+        .form > div{
+            width: 47.5%;
+            height: 60%;
+            margin: 1%;
+            padding: 10px 0px 0px 0px;
+        }
+        .form > div:nth-child(4){
+            width: 100%;
+            height: 35%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            border: none;
+        }
+        .form > div > button{
+            width: 49%;
+            height: 40px;
+            color: white;
+            border: none;
+        }
+        .buttons > button:nth-child(1){
+            background: rgb(0, 195, 0);
+        }
+        .buttons > button:nth-child(2){
+            background: rgb(195, 0, 0);
+        }
+        .buttons > button:nth-child(1):hover{
+            background: rgb(0, 150, 0);
+        }
+        .buttons > button:nth-child(2):hover{
+            background: rgb(150, 0, 0);
+        }
+        .inputs label{
+            color: #eee;
+            margin-left: 5px;
+        }
+        .inputs > input, select{
+            width: 80%;
+            height: 30px;
+            margin-left: 10px;
+            margin: 10px;
+            background: #00ADB5;
+            color: #EEEEEE;
+            outline: none;
+            padding: 0px 0px 0px 10px;
+            border: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+        }
+        select{
+            font-family: 'Minecraft', sans-serif;
+        }
+        input::placeholder{
+            color: rgb(201, 201, 201);
+            font-size: 13px;
+        }
+        .div2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .console{
+            width: 96%;
+            height: 85%;
+            border: 1px solid;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+        .console::-webkit-scrollbar{
+            width: 0px;
+        }
+        .inp{
+            width: 96%;
+            height: 10%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .inp > input{
+            width: 65%;
+            height: 50%;
+            border: none;
+            padding: 4px 0px 4px 10px;
+            outline: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input::placeholder{
+            font-size: 13px;
+            font-family: 'Minecraft', sans-serif;
+        }
+        .inp > button{
+            width: 30%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 4px;
+        }
+  </style>
+<body>
+  <nav>
+    <h1><a href="../index.html">MYZA</a></h1>
+    <div class="navItems">
+      <a href="map.html">Map</a>
+      <a href="bot.html">24/7 Bot</a>
+      <a href="servers.html">Servers</a>
+      <a href="point.html">Point</a>
+    </div>
+    <div class="sign">
+      <button class="signIn">Sign In</button>
+      <!-- <button class="reg">Register</button> -->
+    </div>
+  </nav>
+  <main>
+    <div class="form">
+        <h1>24/7 BOT</h1>
+        <div class="inputs">
+            <label for="name">Bot Name: </label><br>
+            <input id="botName" type="text" name="name" placeholder="Bot Name example: Bot1"><br>
+            <label for="">Server IP: </label><br>
+            <input id="serverIP" type="text" placeholder="example: myza.funserver.top" name="ip"><br>
+            <label for="">Server PORT: </label><br>
+            <input id="serverPORT" type="number" placeholder="example: 12345" name="ports"><br>
+            <label for="">Server Version: </label><br>
+            <select id="versions" required name="version">
+                <option value="">Select Version</option>
+                <option value="1.13.1">1.13.1</option>
+                <option value="1.13.2">1.13.2</option>
+                <option value="1.14">1.14</option>
+                <option value="1.14.1">1.14.1</option>
+                <option value="1.14.2">1.14.2</option>
+                <option value="1.14.3">1.14.3</option>
+                <option value="1.14.4">1.14.4</option>
+                <option value="1.15">1.15</option>
+                <option value="1.15.1">1.15.1</option>
+                <option value="1.15.2">1.15.2</option>
+                <option value="1.16">1.16</option>
+                <option value="1.16.1">1.16.1</option>
+                <option value="1.16.2">1.16.2</option>
+                <option value="1.16.3">1.16.3</option>
+                <option value="1.16.4">1.16.4</option>
+                <option value="1.16.5">1.16.5</option>
+                <option value="1.17">1.17</option>
+                <option value="1.17.1">1.17.1</option>
+                <option value="1.18">1.18</option>
+                <option value="1.18.1">1.18.1</option>
+                <option value="1.18.2">1.18.2</option>
+                <option value="1.19">1.19</option>
+                <option value="1.19.1">1.19.1</option>
+                <option value="1.19.2">1.19.2</option>
+                <option value="1.19.3">1.19.3</option>
+                <option value="1.19.4">1.19.4</option>
+                <option value="1.20">1.20</option>
+                <option value="1.20.1">1.20.1</option>
+                <option value="1.20.2">1.20.2</option>
+                <option value="1.20.3">1.20.3</option>
+                <option value="1.20.4">1.20.4</option>
+                <option value="1.21">1.21</option>
+                <option value="1.21.1">1.21.1</option>
+                <option value="1.21.2">1.21.2</option>
+                <option value="1.21.3">1.21.3</option>
+                <option value="1.21.4">1.21.4</option>
+                <option value="1.21.5">1.21.5</option>
+                <option value="1.21.6">1.21.6</option>
+                <option value="1.21.7">1.21.7</option>
+                <option value="1.21.8">1.21.8</option>
+            </select>
+            <label for="">Anti AFK:</label>
+            <select name="" id="antiAFK">
+                <option value="">None</option>
+                <option value="jump">Jump</option>
+                <option value="sneak">Sneak</option>
+                <option value="sneak-jump">Sneak + Jump</option>
+            </select>
+        </div>
+        <div class="div2">
+            <div class="console"></div>
+            <div class="inp">
+                <input type="text" name="command" placeholder="send /command">
+                <button name="sendCommand">Send</button>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button" onclick="startBot()">START bot</button>
+            <button type="button" onclick="stopBot()">STOP bot</button>
+        </div>
+    </div>
+  </main>
+  <script>
+    const BACKEND_URL = 'https://backend.yourdomain.com'; // Replace with your actual backend domain
+
+    function startBot() {
+        const name = document.getElementById('botName').value;
+        const ip = document.getElementById('serverIP').value;
+        const ports = document.getElementById('serverPORT').value;
+        const version = document.getElementById('versions').value;
+        const antiAFK = document.getElementById('antiAFK').value;
+
+        const socket = io(BACKEND_URL);
+
+        // Real-time loglarni console divga chiqarish
+        socket.on('log', msg => {
+            const consoleDiv = document.querySelector('.console');
+            const p = document.createElement('p');
+            p.style.color = "#eee";
+            p.textContent = msg;
+            consoleDiv.appendChild(p);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        });
+
+        axios.post(`${BACKEND_URL}/startBot`, {
+            name, ip, ports, version, antiAFK
+        }).then(res => {
+            alert(res.data.status === 'success' ? '✅ Bot ishga tushdi!' : '❌ ' + res.data.message);
+        }).catch(err => {
+            alert('Xatolik: ' + err);
+        });
+    }
+
+    function parseCommands(input) {
+        const parts = input.trim().split(/(?=\/|w\d+s|leave)/);
+        const result = [];
+
+        parts.forEach(part => {
+            part = part.trim();
+            if (!part) return;
+
+            if (part.startsWith("w") && part.endsWith("s")) {
+                const seconds = parseInt(part.slice(1, -1));
+                if (!isNaN(seconds)) {
+                    result.push({ type: 'wait', value: seconds });
+                }
+            } else if (part === 'leave') {
+                result.push({ type: 'leave' });
+            } else if (part.startsWith("/")) {
+                result.push({ type: 'command', value: part });
+            }
+        });
+
+        return result;
+    }
+
+    let lastBotInfo = {}; // Bot ma'lumotlari
+    let lastCommandList = []; // Komandalar saqlanadi
+
+    async function executeCommands(commands) {
+        for (const cmd of commands) {
+            if (cmd.type === 'wait') {
+                await new Promise(res => setTimeout(res, cmd.value * 1000));
+            } else if (cmd.type === 'command') {
+                await axios.post(`${BACKEND_URL}/sendCommand`, { command: cmd.value });
+            } else if (cmd.type === 'leave') {
+                await axios.post(`${BACKEND_URL}/stopBot`);
+                setTimeout(() => {
+                    axios.post(`${BACKEND_URL}/startBot`, lastBotInfo)
+                        .then(() => {
+                            setTimeout(() => {
+                                executeCommands(lastCommandList);
+                            }, 5000);
+                        });
+                }, 3000);
+                break;
+            }
+        }
+    }
+
+    function sendLoopCommands(commandString) {
+        const commands = parseCommands(commandString);
+        lastCommandList = commands;
+
+        lastBotInfo = {
+            name: document.getElementById('botName').value,
+            ip: document.getElementById('serverIP').value,
+            ports: document.getElementById('serverPORT').value,
+            version: document.getElementById('versions').value,
+            antiAFK: document.getElementById('antiAFK').value
+        };
+
+        executeCommands(commands);
+    }
+
+    // inputni handle qilish
+    document.querySelector('button[name="sendCommand"]').addEventListener('click', () => {
+        const commandInput = document.querySelector('input[name="command"]');
+        const command = commandInput.value.trim();
+        if (command) {
+            sendLoopCommands(command); // oddiy command emas, loopli
+            commandInput.value = '';
+        }
+    });
+
+    function stopBot() {
+        axios.post(`${BACKEND_URL}/stopBot`)
+            .then(response => {
+                if (response.data.status === 'success') {
+                    alert('✅ Bot to‘xtatildi.');
+                } else {
+                    alert('❌ Xatolik: ' + response.data.message);
+                }
+            })
+            .catch(error => {
+                console.error('❌ Xatolik:', error);
+                const msg = error.response?.data?.message || error.message;
+                alert('Failed to stop bot.\n' + msg);
+            });
+    }
+  </script>
+</body>
+</html>
