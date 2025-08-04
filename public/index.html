@@ -1,76 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MYZA page</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYZA</title>
 </head>
 <body>
-  <nav>
-    <h1><a href="./index.html">MYZA</a></h1>
-    <div class="navItems">
-      <a href="pages/map.html">Map</a>
-      <a href="pages/bot.html">24/7 Bot</a>
-      <a href="pages/servers.html">Servers</a>
-      <a href="pages/point.html">Point</a>
-    </div>
-    <div class="sign">
-      <button class="signIn">Sign In</button>
-      <!-- <button class="reg">Register</button> -->
-    </div>
-  </nav>
-  <main>
-      <section>
-        <div class="noneDiv"></div>
-        <div class="JoinOurServer">
-          <div class="divSec1">
-            <code><p id="copyText">myza.funserver.top</p></code>
-            <button onclick="copyText()">Copy</button>
-          </div>
-          <div class="divSec2">
-              <p>Join Our server</p>
-          </div>
-          <div class="divSec3">
-            <div class="divs">
-              <div class="div1">
-                <p>SURVIVAL</p>
-              </div>
-              <div class="div2">
-                <p>ANARCHY</p>
-              </div>
-              <div class="div3">
-                <p>ONEBLOCK</p>
-              </div>
-              <div class="div4">
-                <p>BEDWARS</p>
-              </div>
-              <div class="div5">
-                <p>SKYWARS</p>
-              </div>
-              <div class="div6">
-                <p>PVP</p>
-              </div>
-
-            </div>
-          </div>
+    <header>
+        <h1>MYZA</h1>
+        <nav>
+            <a href="/">Map</a>
+            <a href="/bot.html">24/7 Bot</a>
+            <a href="/servers">Servers</a>
+            <a href="/point">Point</a>
+        </nav>
+        <div>
+            <a href="/sign-in">Sign In</a>
         </div>
-        <div class="Map-div"></div>
-        <div class="Bot-div"></div>
-        <div class="Servers-div"></div>
-        <div class="Point-div"></div>
-      </section>
-  </main>
-  <footer>
-    
-  </footer>
-  <script>
-    function copyText() {
-        const text = document.getElementById("textInput").value;
-        navigator.clipboard.writeText(text).then(() => {
-            alert("Matn nusxalandi!");
-        });
-    }
-  </script>
+    </header>
+    <main>
+        <section>
+            <h2>myza.funserver.top</h2>
+            <button>Copy</button>
+            <button>Join Our Server</button>
+            <div>
+                <h3>SURVIVAL</h3>
+                <h3>ANARCHY</h3>
+                <h3>ONEBLOCK</h3>
+                <h3>BEDWARS</h3>
+                <h3>SKYWARS</h3>
+                <h3>PVP</h3>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
